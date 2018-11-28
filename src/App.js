@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Provider } from 'react-redux';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
+import RateConvertContainer from './containers/RateConvert';
 
-      </div>
-    );
-  }
-}
+import { configureStore, } from './store';
 
-export default App;
+const store = configureStore();
+
+export default () => (
+      <Provider store={store}>
+        <RateConvertContainer />
+      </Provider>
+  );
