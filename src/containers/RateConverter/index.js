@@ -28,7 +28,6 @@ const RateConvertContainer = compose(
 			targetCurrency: select.getSelectedTargetCurrency(state),
 			availableRates: select.getAvailableRates(state),
 			convertIndex: select.getCurrenciesRelation(state),
-			currentSelectedRate: select.getTargetCurrencyRate(state),
 		}),
 		dispatch => ({ dispatch }),
 	),

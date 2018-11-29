@@ -11,7 +11,7 @@ const RateConverter = ({
 	selectCurrency,
 	resultValue,
 	ratePollStopAction,
-	currentSelectedRate,
+	convertIndex,
 	parseError,
 }) => (
 	<div className="wrapper">
@@ -29,11 +29,10 @@ const RateConverter = ({
 				<select
 					className="rate_select"
 					onChange={e => selectCurrency('source', e.target.value)}
+					value={sourceCurrency}
 				>
 					{availableRates.map(rate => (
-						<option key={rate} selected={rate === sourceCurrency}>
-							{rate}{' '}
-						</option>
+						<option key={rate}>{rate} </option>
 					))}
 				</select>
 			</label>
@@ -41,28 +40,30 @@ const RateConverter = ({
 				<div className="input_error_label">Please, enter valid sum</div>
 			)}
 		</aside>
-
 		<aside className="aside aside-2">
-			{resultValue}
+			<input
+				className="convert_value_output"
+				value={resultValue}
+				disabled={true}
+			/>
 			<label>
 				<select
 					className="rate_select"
 					onChange={e => selectCurrency('target', e.target.value)}
+					value={targetCurrency}
 				>
 					{availableRates.map(rate => (
-						<option key={rate} selected={rate === targetCurrency}>
-							{rate}{' '}
-						</option>
+						<option key={rate}>{rate} </option>
 					))}
 				</select>
 			</label>
 		</aside>
 		<footer className="footer">
 			<div>
-				1 {sourceCurrency} = {currentSelectedRate} {targetCurrency}
+				1 {sourceCurrency} = {convertIndex} {targetCurrency}
 			</div>
 			<div>
-				1 {targetCurrency} = {1 / currentSelectedRate} {sourceCurrency}
+				1 {targetCurrency} = {1 / convertIndex} {sourceCurrency}
 			</div>
 		</footer>
 	</div>
