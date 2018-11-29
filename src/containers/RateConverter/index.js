@@ -15,7 +15,9 @@ import {
 	selectCurrency,
 	ratePollStartAction,
 	ratePollStopAction,
-} from '../../actions/index'
+} from '../../actions'
+
+import { isNotNumber } from '../../utils'
 
 import RateConvertComponent from './component'
 
@@ -26,6 +28,7 @@ const RateConvertContainer = compose(
 			targetCurrency: select.getSelectedTargetCurrency(state),
 			availableRates: select.getAvailableRates(state),
 			convertIndex: select.getCurrenciesRelation(state),
+			currentSelectedRate: select.getTargetCurrencyRate(state),
 		}),
 		dispatch => ({ dispatch }),
 	),
@@ -34,7 +37,7 @@ const RateConvertContainer = compose(
 			valueToConvert: '',
 		}),
 		{
-			setValueToConvert: () => val => ({ valueToConvert: val.trim() }),
+			setValueToConvert: () => val => ({ valueToConvert: val }),
 		},
 	),
 	withHandlers({
@@ -53,7 +56,8 @@ const RateConvertContainer = compose(
 		},
 	}),
 	withProps(({ valueToConvert, convertIndex }) => ({
-		resultValue: valueToConvert * convertIndex,
+		resultValue: isNotNumber(valueToConvert)? 0: valueToConvert * convertIndex,
+		parseError: isNotNumber(valueToConvert),
 	})),
 )(RateConvertComponent)
 

@@ -11,17 +11,25 @@ const RateConverter = ({
 	selectCurrency,
 	resultValue,
 	ratePollStopAction,
+	currentSelectedRate,
+	parseError,
 }) => (
 	<div className="wrapper">
 		<header className="header" onClick={() => ratePollStopAction()}>
-			Header
+			<div>
+				1 {sourceCurrency} = {currentSelectedRate} {targetCurrency}
+			</div>
+			<div>
+				1 {targetCurrency} = {1 / currentSelectedRate} {sourceCurrency}
+			</div>
 		</header>
 		<aside className="aside aside-1">
 			<input
-				className="convert_value_input"
+				className={`${parseError ? 'input_error' : ''} convert_value_input`}
 				placeholder="Input to convert"
 				onChange={e => setValueToConvert(e.target.value)}
 			/>
+
 			<label>
 				<select
 					className="rate_select"
@@ -34,6 +42,9 @@ const RateConverter = ({
 					))}
 				</select>
 			</label>
+			{parseError && (
+				<div className="input_error_label">Please, enter valid sum</div>
+			)}
 		</aside>
 		<article className="main">{resultValue}</article>
 		<aside className="aside aside-2">
