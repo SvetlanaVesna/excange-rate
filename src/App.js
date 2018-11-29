@@ -1,14 +1,14 @@
-import React from 'react';
-import { Provider } from 'react-redux';
+import React from 'react'
+import { Provider } from 'react-redux'
 
-import RateConvertContainer from './containers/RateConvert';
+import RateConvertContainer from './containers/RateConverter'
 
-import { configureStore, } from './store';
+import { configureStore } from './store'
 
-const store = configureStore();
+const store = configureStore()
 
 export default () => (
-      <Provider store={store}>
-        <RateConvertContainer />
-      </Provider>
-  );
+	<Provider store={store}>
+		<RateConvertContainer />
+	</Provider>
+)

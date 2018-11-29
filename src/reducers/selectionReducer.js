@@ -1,15 +1,17 @@
-import { createReducer } from './utils/ReducersUtils';
+import { createReducer } from './utils/ReducersUtils'
 
-import {SELECT_CURRENCY} from '../constants/actionTypes';
+import { SELECT_CURRENCY } from '../constants/actionTypes'
 
 const initialState = {
-  source:'',
-  target:''
-};
+	source: 'GBP',
+	target: 'EUR',
+}
 
-const setSelectedCurrency = (state, {direction,
-  currency}) => ({...state,[direction]:currency});
+const setSelectedCurrency = (state, { direction, currency }) => ({
+	...state,
+	[direction]: currency,
+})
 
 export default createReducer(initialState, {
-  [SELECT_CURRENCY]: setSelectedCurrency
-});
+	[SELECT_CURRENCY]: setSelectedCurrency,
+})
