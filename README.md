@@ -5,10 +5,10 @@
 2. calculate exchanges - done
 3. react, redux - done
 4. features from app screen 
-  - selection source and target Currencies (GBP, EUR and USD.)
-  - recalculation sum
-  - set Currencies onfligth  
-  - try to create it responsible for mobile and desctop 
-5. catch server errors
+  - selection source and target Currencies (GBP, EUR and USD.)- done
+  - recalculation sum- done
+  - set Currencies onfligth  - done
+  - try to create it responsible for mobile and desktop - done
+5. catch server errors - done
   
 npm start
