@@ -16,12 +16,7 @@ const RateConverter = ({
 }) => (
 	<div className="wrapper">
 		<header className="header" onClick={() => ratePollStopAction()}>
-			<div>
-				1 {sourceCurrency} = {currentSelectedRate} {targetCurrency}
-			</div>
-			<div>
-				1 {targetCurrency} = {1 / currentSelectedRate} {sourceCurrency}
-			</div>
+			Exchange Currencies
 		</header>
 		<aside className="aside aside-1">
 			<input
@@ -46,8 +41,9 @@ const RateConverter = ({
 				<div className="input_error_label">Please, enter valid sum</div>
 			)}
 		</aside>
-		<article className="main">{resultValue}</article>
+
 		<aside className="aside aside-2">
+			{resultValue}
 			<label>
 				<select
 					className="rate_select"
@@ -61,6 +57,14 @@ const RateConverter = ({
 				</select>
 			</label>
 		</aside>
+		<footer className="footer">
+			<div>
+				1 {sourceCurrency} = {currentSelectedRate} {targetCurrency}
+			</div>
+			<div>
+				1 {targetCurrency} = {1 / currentSelectedRate} {sourceCurrency}
+			</div>
+		</footer>
 	</div>
 )
 

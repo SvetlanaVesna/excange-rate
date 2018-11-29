@@ -1,10 +1,10 @@
 import { combineEpics, ofType } from 'redux-observable'
 
 import { ajax } from 'rxjs/ajax'
-import { switchMap, takeUntil, tap } from 'rxjs/operators'
+import { switchMap, takeUntil, catchError } from 'rxjs/operators'
 import { timer, of } from 'rxjs'
 
-import { EXCHANGE_API_URL, EXCHANGE_APP_ID } from '../constants'
+import { EXCHANGE_API_URL, EXCHANGE_APP_ID, POLL_PERIOD } from '../constants'
 
 import { RATE_POLL, START, STOP, SUCCESS, FAIL } from '../constants/actionTypes'
 
@@ -14,7 +14,7 @@ const pollEpic = action$ =>
 	action$.pipe(
 		ofType(RATE_POLL + START),
 		switchMap(() =>
-			timer(0, 4000)
+			timer(0, POLL_PERIOD)
 				.pipe(
 					switchMap(() =>
 						ajax({
@@ -22,7 +22,7 @@ const pollEpic = action$ =>
 							crossDomain: true,
 						}).pipe(
 							switchMap(({ response }) => of(getRateData(SUCCESS)(response))),
-							tap(data => of(getRateData(FAIL)(data))),
+							catchError(({ response }) => of(getRateData(FAIL)(response))),
 						),
 					),
 				)

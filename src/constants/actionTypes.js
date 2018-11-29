@@ -8,3 +8,5 @@ export const RATE_POLL = 'RATE_POLL'
 export const GET_RATE = 'GET_RATE'
 
 export const SELECT_CURRENCY = 'SELECT_CURRENCY'
+
+export const CLEAR_ERRORS = 'CLEAR_ERRORS'

@@ -56,7 +56,9 @@ const RateConvertContainer = compose(
 		},
 	}),
 	withProps(({ valueToConvert, convertIndex }) => ({
-		resultValue: isNotNumber(valueToConvert)? 0: valueToConvert * convertIndex,
+		resultValue: isNotNumber(valueToConvert)
+			? 0
+			: valueToConvert * convertIndex,
 		parseError: isNotNumber(valueToConvert),
 	})),
 )(RateConvertComponent)

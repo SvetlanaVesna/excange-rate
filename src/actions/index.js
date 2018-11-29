@@ -4,6 +4,7 @@ import {
 	GET_RATE,
 	START,
 	STOP,
+	CLEAR_ERRORS,
 } from '../constants/actionTypes'
 
 /**
@@ -32,4 +33,8 @@ export const selectCurrency = (direction, currency) => ({
 	type: SELECT_CURRENCY,
 	direction,
 	currency,
+})
+
+export const clearErrors = () => ({
+	type: CLEAR_ERRORS,
 })
