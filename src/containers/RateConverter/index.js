@@ -44,22 +44,18 @@ const RateConvertContainer = compose(
 			dispatch(selectCurrency(direction, currency)),
 		ratePollStopAction: ({ dispatch }) => () => dispatch(ratePollStopAction()),
 	}),
-	lifecycle({
-		componentDidMount() {
-			const { dispatch } = this.props
-			dispatch(ratePollStartAction())
-		},
-		componentWillUnmount() {
-			const { dispatch } = this.props
-			dispatch(ratePollStopAction())
-		},
-	}),
 	withProps(({ valueToConvert, convertIndex }) => ({
 		resultValue: isNotNumber(valueToConvert)
 			? 0
 			: valueToConvert * convertIndex,
 		parseError: isNotNumber(valueToConvert),
 	})),
+	lifecycle({
+		componentDidMount() {
+			const { dispatch } = this.props
+			dispatch(ratePollStartAction())
+		},
+	}),
 )(RateConvertComponent)
 
 const RateConvert = () => <RateConvertContainer />

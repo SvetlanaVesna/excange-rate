@@ -20,14 +20,14 @@ const RateConverter = ({
 		</header>
 		<aside className="aside aside-1">
 			<input
-				className={`${parseError ? 'input_error' : ''} convert_value_input`}
+				className={`convert_value_input${parseError ? ' input_error' : ''}`}
 				placeholder="Input to convert"
 				onChange={e => setValueToConvert(e.target.value)}
 			/>
 
 			<label>
 				<select
-					className="rate_select"
+					className="source_rate_select rate_select"
 					onChange={e => selectCurrency('source', e.target.value)}
 					value={sourceCurrency}
 				>
@@ -48,7 +48,7 @@ const RateConverter = ({
 			/>
 			<label>
 				<select
-					className="rate_select"
+					className="target_rate_select rate_select"
 					onChange={e => selectCurrency('target', e.target.value)}
 					value={targetCurrency}
 				>
