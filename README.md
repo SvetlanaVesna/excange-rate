@@ -11,5 +11,10 @@
   - try to create it responsible for mobile and desktop - done
 5. catch server errors - done
 6. write some tests - done
-  
-npm start
+
+
+yarn install
+
+yarn start
+
+yarn test
