@@ -1,1 +1,2 @@
-export const EXCHANGE_API_URL = 'https://openexchangerates.org/api/latest.json'
+export const APP_URL = 'https://openexchangerates.org'
+export const EXCHANGE_API_URL = '/api/latest.json'

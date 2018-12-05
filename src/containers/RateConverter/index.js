@@ -17,7 +17,7 @@ import {
 	ratePollStopAction,
 } from '../../actions'
 
-import { isNotNumber } from '../../utils'
+import { isNotNumber, formatter, clearField } from '../../utils'
 
 import RateConvertComponent from './component'
 
@@ -28,6 +28,9 @@ const RateConvertContainer = compose(
 			targetCurrency: select.getSelectedTargetCurrency(state),
 			availableRates: select.getAvailableRates(state),
 			convertIndex: select.getCurrenciesRelation(state),
+			isFetching: select.isRatesFetching(state),
+			sourceUserWallet: select.getSourceUserWallet(state),
+			targetUserWallet: select.getTargetUserWallet(state),
 		}),
 		dispatch => ({ dispatch }),
 	),
@@ -36,7 +39,7 @@ const RateConvertContainer = compose(
 			valueToConvert: '',
 		}),
 		{
-			setValueToConvert: () => val => ({ valueToConvert: val }),
+			setValueToConvert: () => val => ({ valueToConvert: clearField(val) }),
 		},
 	),
 	withHandlers({
@@ -44,10 +47,10 @@ const RateConvertContainer = compose(
 			dispatch(selectCurrency(direction, currency)),
 		ratePollStopAction: ({ dispatch }) => () => dispatch(ratePollStopAction()),
 	}),
-	withProps(({ valueToConvert, convertIndex }) => ({
+	withProps(({ valueToConvert, convertIndex, targetCurrency }) => ({
 		resultValue: isNotNumber(valueToConvert)
 			? 0
-			: valueToConvert * convertIndex,
+			: formatter(targetCurrency, valueToConvert * convertIndex),
 		parseError: isNotNumber(valueToConvert),
 	})),
 	lifecycle({

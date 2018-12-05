@@ -13,6 +13,7 @@ import {
 export const ratePollStartAction = () => ({ type: RATE_POLL + START })
 export const ratePollStopAction = () => ({ type: RATE_POLL + STOP })
 
+export const getRateStartAction = () => ({ type: GET_RATE + START })
 /**
  * Fetch rate data from openexchangerates.org
  * @param status
