@@ -1,8 +1,27 @@
 import { createSelector } from 'reselect'
 
-export const getSelectedSourceCurrency = ({ selection }) => selection.source
+export const getAllUserWallets = ({ wallet }) => wallet.allWallets
+export const getSourceUserWalletKey = ({ wallet }) => wallet.source
+export const getTargetUserWalletKey = ({ wallet }) => wallet.target
 
-export const getSelectedTargetCurrency = ({ selection }) => selection.target
+export const getSourceUserWallet = createSelector(
+	getAllUserWallets,
+	getSourceUserWalletKey,
+	(list, key) => (key !== '' ? list[key] : { currency: '', content: 0 }),
+)
+export const getTargetUserWallet = createSelector(
+	getAllUserWallets,
+	getTargetUserWalletKey,
+	(list, key) => (key !== '' ? list[key] : { currency: '', content: 0 }),
+)
+export const getSelectedSourceCurrency = createSelector(
+	getSourceUserWallet,
+	wallet => wallet.currency,
+)
+export const getSelectedTargetCurrency = createSelector(
+	getTargetUserWallet,
+	wallet => wallet.currency,
+)
 
 export const isRatesFetching = ({ rates: { isFetching } }) => isFetching
 
@@ -17,28 +36,4 @@ export const getCurrenciesRelation = createSelector(
 	getAllRates,
 	(source, target, list) =>
 		list[target] && list[source] ? list[target] / list[source] : 1,
-)
-export const userWalletCurrency = ({ wallet }) => wallet.currency
-
-export const userWalletContent = ({ wallet }) => wallet.content
-
-export const getTargetUserWallet = createSelector(
-	getSelectedTargetCurrency,
-	getAllRates,
-	userWalletCurrency,
-	userWalletContent,
-	(targetRate, rateList, userWalletCurrency, walletContent) =>
-		rateList[targetRate]
-			? (walletContent * rateList[targetRate]) / rateList[userWalletCurrency]
-			: 1,
-)
-export const getSourceUserWallet = createSelector(
-	getSelectedSourceCurrency,
-	getAllRates,
-	userWalletCurrency,
-	userWalletContent,
-	(sourceRate, rateList, userWalletCurrency, walletContent) =>
-		rateList[sourceRate]
-			? (walletContent * rateList[sourceRate]) / rateList[userWalletCurrency]
-			: 1,
 )

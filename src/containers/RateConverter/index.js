@@ -12,12 +12,13 @@ import {
 import * as select from '../../reducers/selectors'
 
 import {
-	selectCurrency,
 	ratePollStartAction,
 	ratePollStopAction,
+	selectWallet,
+	exchange,
 } from '../../actions'
 
-import { isNotNumber, formatter, clearField } from '../../utils'
+import { formatter, checkInputValue } from '../../utils'
 
 import RateConvertComponent from './component'
 
@@ -29,7 +30,8 @@ const RateConvertContainer = compose(
 			availableRates: select.getAvailableRates(state),
 			convertIndex: select.getCurrenciesRelation(state),
 			isFetching: select.isRatesFetching(state),
-			sourceUserWallet: select.getSourceUserWallet(state),
+			userWallets: select.getAllUserWallets(state),
+			selectedWallet: select.getSourceUserWallet(state),
 			targetUserWallet: select.getTargetUserWallet(state),
 		}),
 		dispatch => ({ dispatch }),
@@ -37,22 +39,39 @@ const RateConvertContainer = compose(
 	withStateHandlers(
 		() => ({
 			valueToConvert: '',
+			error: false,
 		}),
 		{
-			setValueToConvert: () => val => ({ valueToConvert: clearField(val) }),
+			setStateValue: () => val => val,
 		},
 	),
-	withHandlers({
-		selectCurrency: ({ dispatch }) => (direction, currency) =>
-			dispatch(selectCurrency(direction, currency)),
-		ratePollStopAction: ({ dispatch }) => () => dispatch(ratePollStopAction()),
-	}),
 	withProps(({ valueToConvert, convertIndex, targetCurrency }) => ({
-		resultValue: isNotNumber(valueToConvert)
-			? 0
-			: formatter(targetCurrency, valueToConvert * convertIndex),
-		parseError: isNotNumber(valueToConvert),
+		resultValue: formatter(targetCurrency, valueToConvert * convertIndex),
 	})),
+	withHandlers({
+		setValueToConvert: ({
+			setStateValue,
+			selectedWallet: { content },
+		}) => val => setStateValue(checkInputValue(content, val)),
+
+		ratePollStopAction: ({ dispatch }) => () => dispatch(ratePollStopAction()),
+
+		selectWallet: ({ dispatch }) => (direction, wallet) => {
+			dispatch(selectWallet(direction, wallet))
+		},
+
+		exchange: ({
+			dispatch,
+			valueToConvert,
+			resultValue,
+			selectedWallet: { content },
+			setStateValue,
+		}) => () => {
+			const hasError = checkInputValue(content, valueToConvert)
+			if (!hasError.error) dispatch(exchange(valueToConvert, resultValue))
+			else setStateValue(hasError)
+		},
+	}),
 	lifecycle({
 		componentDidMount() {
 			const { dispatch } = this.props

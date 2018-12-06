@@ -1,80 +1,68 @@
 import React from 'react'
 
+import Footer from './parts/footer'
+import Header from './parts/header'
+
+import WalletSelectionComponent from './parts/walletSelection'
+import CurrencyInputComponent from './parts/currencyInput'
+import TargetWalletComponent from './parts/targetWallet'
+
 import './style.css'
 
 const RateConverter = ({
 	isFetching,
+
 	availableRates,
 	sourceCurrency,
 	targetCurrency,
+
 	valueToConvert,
 	setValueToConvert,
-	selectCurrency,
+
 	resultValue,
-	ratePollStopAction,
 	convertIndex,
-	parseError,
-	sourceUserWallet,
+	error,
+
+	userWallets,
+	selectedWallet,
 	targetUserWallet,
+
+	selectWallet,
+	exchange,
+
+	ratePollStopAction,
 }) => (
 	<div className="wrapper">
-		<header className="header" onClick={() => ratePollStopAction()}>
-			Exchange Currencies
-		</header>
+		<Header ratePollStopAction={ratePollStopAction} />
+		<WalletSelectionComponent
+			selectWallet={selectWallet}
+			selectedWallet={selectedWallet}
+			userWallets={userWallets}
+		/>
 		{isFetching && <h1>LOADING...</h1>}
-		<aside className="aside aside-1">
-			<input
-				className={`convert_value_input${parseError ? ' input_error' : ''}`}
-				placeholder="Input to convert"
-				onChange={e => setValueToConvert(e.target.value)}
-				value={valueToConvert}
-			/>
-
-			<label>
-				<select
-					className="source_rate_select rate_select"
-					onChange={e => selectCurrency('source', e.target.value)}
-					value={sourceCurrency}
-				>
-					{availableRates.map(rate => (
-						<option key={rate}>{rate} </option>
-					))}
-				</select>
-			</label>
-			{parseError && (
-				<div className="input_error_label">Please, enter valid sum</div>
-			)}
-		</aside>
+		<CurrencyInputComponent
+			error={error}
+			setValueToConvert={setValueToConvert}
+			valueToConvert={valueToConvert}
+			sourceCurrency={sourceCurrency}
+		/>
 		{!isFetching && (
-			<aside className="aside aside-2">
-				<input
-					className="convert_value_output"
-					value={resultValue}
-					disabled={true}
-				/>
-				<label>
-					<select
-						className="target_rate_select rate_select"
-						onChange={e => selectCurrency('target', e.target.value)}
-						value={targetCurrency}
-					>
-						{availableRates.map(rate => (
-							<option key={rate}>{rate} </option>
-						))}
-					</select>
-				</label>
-			</aside>
+			<TargetWalletComponent
+				resultValue={resultValue}
+				selectWallet={selectWallet}
+				targetCurrency={targetCurrency}
+				userWallets={userWallets}
+				exchange={exchange}
+				error={error}
+			/>
 		)}
 		{!isFetching && (
-			<footer className="footer">
-				<aside className="aside">You have:</aside>
-				<aside className="aside aside-1">
-					{sourceUserWallet} {sourceCurrency}
-				</aside>
-				<aside className="aside aside-2">
-					{targetUserWallet} {targetCurrency}
-				</aside>
-			</footer>
+			<Footer
+				selectedWallet={selectedWallet}
+				sourceCurrency={sourceCurrency}
+				targetUserWallet={targetUserWallet}
+				targetCurrency={targetCurrency}
+			/>
 		)}
 		<div>
 			<div>

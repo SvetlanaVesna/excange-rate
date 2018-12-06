@@ -1,5 +1,6 @@
 import {
-	SELECT_CURRENCY,
+	SELECT_WALLET,
+	EXCHANGE,
 	RATE_POLL,
 	GET_RATE,
 	START,
@@ -25,15 +26,22 @@ export const getRateData = status => response => ({
 })
 
 /**
- * Select source or target currency
+ * Select source or target wallet
  * @param direction
- * @param currency
- * @returns {{type: string, direction: string, currency: string}}
+ * @param wallet
+ * @returns {{type: string, direction: string, wallet: string}}
  */
-export const selectCurrency = (direction, currency) => ({
-	type: SELECT_CURRENCY,
+
+export const selectWallet = (direction, wallet) => ({
+	type: SELECT_WALLET,
+	wallet,
 	direction,
-	currency,
+})
+
+export const exchange = (sourceSum, targetSum) => ({
+	type: EXCHANGE,
+	sourceSum: Number.parseFloat(sourceSum),
+	targetSum,
 })
 
 export const clearErrors = () => ({

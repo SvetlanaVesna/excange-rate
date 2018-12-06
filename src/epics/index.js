@@ -4,7 +4,12 @@ import { ajax } from 'rxjs/ajax'
 import { switchMap, takeUntil, catchError, startWith } from 'rxjs/operators'
 import { timer, of } from 'rxjs'
 
-import { APP_URL, EXCHANGE_API_URL, EXCHANGE_APP_ID, POLL_PERIOD } from '../constants'
+import {
+	APP_URL,
+	EXCHANGE_API_URL,
+	EXCHANGE_APP_ID,
+	POLL_PERIOD,
+} from '../constants'
 
 import { RATE_POLL, START, STOP, SUCCESS, FAIL } from '../constants/actionTypes'
 

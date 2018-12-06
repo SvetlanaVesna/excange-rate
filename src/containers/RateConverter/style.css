@@ -1,7 +1,6 @@
 .wrapper, .footer {
     display: flex;
     flex-flow: row wrap;
-    font-weight: bold;
     text-align: center;
 }
 
@@ -39,7 +38,10 @@
     -moz-box-shadow: 10px 10px 20px -4px rgba(0,0,0,0.29);
     box-shadow: 10px 10px 20px -4px rgba(0,0,0,0.29);
 }
-
+.aside > span{
+    padding-left: 5px;
+    padding-right: 5px;
+}
 @media all and (min-width: 600px) {
     .aside { flex: 1 auto; }
 }
@@ -140,11 +142,16 @@ label:after {
     pointer-events:none;
 }
 label:before {
-    content:'';
-    right:0px; top:0px;
-    width:20px; height:20px;
-    background:#f8f8f8;
-    position:absolute;
-    pointer-events:none;
-    display:block;
+    content: '';
+    right: 0px;
+    top: 0px;
+    width: 20px;
+    height: 20px;
+    background: #f8f8f8;
+    position: absolute;
+    pointer-events: none;
+    display: block;
+}
+.source_rate_select{
+    cursor: default;
 }
