@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default ({
+const CurrencyInput = ({
 	error,
 	setValueToConvert,
 	valueToConvert,
@@ -20,3 +20,4 @@ export default ({
 		{error && <div className="input_error_label">{error}</div>}
 	</aside>
 )
+export default CurrencyInput

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default ({
+const TargetWallet = ({
 	resultValue,
 	selectWallet,
 	targetCurrency,
@@ -42,3 +42,4 @@ export default ({
 		</span>
 	</aside>
 )
+export default TargetWallet

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default ({ selectWallet, selectedWallet, userWallets }) => (
+const WalletSelection = ({ selectWallet, selectedWallet, userWallets }) => (
 	<aside className="aside aside-1">
 		<span>select wallet</span>
 		<span>
@@ -20,3 +20,4 @@ export default ({ selectWallet, selectedWallet, userWallets }) => (
 		</span>
 	</aside>
 )
+export default WalletSelection

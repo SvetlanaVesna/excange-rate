@@ -55,8 +55,18 @@ const RateConvertContainer = compose(
 
 		ratePollStopAction: ({ dispatch }) => () => dispatch(ratePollStopAction()),
 
-		selectWallet: ({ dispatch }) => (direction, wallet) => {
+		selectWallet: ({
+			dispatch,
+			userWallets,
+			valueToConvert,
+			setStateValue,
+		}) => (direction, wallet) => {
 			dispatch(selectWallet(direction, wallet))
+			const hasError = checkInputValue(
+				userWallets[wallet].content,
+				valueToConvert,
+			)
+			setStateValue(hasError)
 		},
 
 		exchange: ({
