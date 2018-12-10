@@ -1,5 +1,6 @@
 import {
 	SELECT_WALLET,
+	ADD_WALLETS,
 	EXCHANGE,
 	RATE_POLL,
 	GET_RATE,
@@ -46,4 +47,9 @@ export const exchange = (sourceSum, targetSum) => ({
 
 export const clearErrors = () => ({
 	type: CLEAR_ERRORS,
+})
+
+export const addWallet = currency => ({
+	type: ADD_WALLETS,
+	currency,
 })

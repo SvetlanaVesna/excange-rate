@@ -1,6 +1,6 @@
 import { createReducer } from './utils/ReducersUtils'
 
-import { SELECT_WALLET, EXCHANGE } from '../constants/actionTypes'
+import { SELECT_WALLET, ADD_WALLETS, EXCHANGE } from '../constants/actionTypes'
 
 const initialState = {
 	allWallets: {
@@ -46,8 +46,13 @@ const exchangeBetweenWallets = (state, { sourceSum, targetSum }) => {
 		},
 	}
 }
+const addWallet = (state, { currency }) => ({
+	...state,
+	allWallets: { ...state.allWallets, [currency]: { content: 0, currency } },
+})
 
 export default createReducer(initialState, {
 	[SELECT_WALLET]: selectWallet,
 	[EXCHANGE]: exchangeBetweenWallets,
+	[ADD_WALLETS]: addWallet,
 })

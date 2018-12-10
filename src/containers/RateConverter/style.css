@@ -107,7 +107,7 @@ body {
 .input_error{
     border-color: red;
 }
-.rate_select {
+.rate_select, .rate_exchange {
     padding:10px 20px;
     margin: 0;
     -webkit-border-radius:4px;

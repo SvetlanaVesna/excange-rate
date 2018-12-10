@@ -33,7 +33,7 @@ export default ({
 		</span>
 		<span>
 			<button
-				className="rate_select"
+				className="rate_exchange"
 				onClick={() => exchange()}
 				disabled={error}
 			>

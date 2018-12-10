@@ -12,13 +12,44 @@ ShallowWrapper {
       ]
     }
     convertIndex={1.1247229670832493}
-    parseError={false}
+    error={false}
+    exchange={[MockFunction]}
+    isFetching={false}
     ratePollStopAction={[MockFunction]}
     resultValue={13.496675604998991}
     selectCurrency={[MockFunction]}
+    selectWallet={[MockFunction]}
+    selectedWallet={
+      Object {
+        "content": 2,
+        "currency": "GBP",
+      }
+    }
     setValueToConvert={[MockFunction]}
     sourceCurrency="GBP"
     targetCurrency="EUR"
+    targetUserWallet={
+      Object {
+        "content": 58,
+        "currency": "USD",
+      }
+    }
+    userWallets={
+      Object {
+        "EUR": Object {
+          "content": 0,
+          "currency": "EUR",
+        },
+        "GBP": Object {
+          "content": 2,
+          "currency": "GBP",
+        },
+        "USD": Object {
+          "content": 58,
+          "currency": "USD",
+        },
+      }
+    }
     valueToConvert={12}
   />,
   Symbol(enzyme.__renderer__): Object {

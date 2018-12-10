@@ -13,7 +13,6 @@ test('ratesReducer should set rates after success getting of it', () => {
 
 	expect(newState).toMatchObject({
 		base: 'USD',
-		availableRates: ['GBP', 'EUR', 'USD'],
 		rates: { USD: 1, EUR: 1.3 },
 		isFetching: false,
 	})

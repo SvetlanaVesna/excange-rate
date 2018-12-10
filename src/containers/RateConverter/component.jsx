@@ -12,7 +12,6 @@ import './style.css'
 const RateConverter = ({
 	isFetching,
 
-	availableRates,
 	sourceCurrency,
 	targetCurrency,
 

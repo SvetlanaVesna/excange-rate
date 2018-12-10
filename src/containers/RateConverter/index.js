@@ -27,7 +27,6 @@ const RateConvertContainer = compose(
 		state => ({
 			sourceCurrency: select.getSelectedSourceCurrency(state),
 			targetCurrency: select.getSelectedTargetCurrency(state),
-			availableRates: select.getAvailableRates(state),
 			convertIndex: select.getCurrenciesRelation(state),
 			isFetching: select.isRatesFetching(state),
 			userWallets: select.getAllUserWallets(state),

@@ -25,9 +25,6 @@ export const getSelectedTargetCurrency = createSelector(
 
 export const isRatesFetching = ({ rates: { isFetching } }) => isFetching
 
-export const getAvailableRates = ({ rates: { availableRates } }) =>
-	availableRates
-
 export const getAllRates = ({ rates }) => rates.rates
 
 export const getCurrenciesRelation = createSelector(

@@ -4,7 +4,6 @@ import { GET_RATE, SUCCESS, FAIL, START } from '../constants/actionTypes'
 
 const initialState = {
 	base: '',
-	availableRates: ['GBP', 'EUR', 'USD'],
 	rates: {},
 	isFetching: false,
 }
