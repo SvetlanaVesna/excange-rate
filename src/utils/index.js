@@ -24,7 +24,7 @@ export function checkInputValue(maxInput, valueToCheck) {
 	if (!/^[0-9 ]*\.?[0-9 ]*$/.test(valueToCheck))
 		return {
 			valueToConvert: '',
-			error: 'This value can contain only digits',
+			error: 'This value can contain only digits and dot',
 		}
 	else
 		return {
