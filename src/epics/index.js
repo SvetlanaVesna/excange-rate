@@ -22,6 +22,7 @@ const pollEpic = action$ =>
 			timer(0, POLL_PERIOD)
 				.pipe(
 					switchMap(() =>
+						//TODO if using proxy remove APP_URL from url
 						ajax({
 							url: `${APP_URL}${EXCHANGE_API_URL}?app_id=${EXCHANGE_APP_ID}`,
 							crossDomain: true,
